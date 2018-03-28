@@ -55,6 +55,10 @@ class Action(Enum):
     EAST = (0, 1, 1)
     NORTH = (-1, 0, 1)
     SOUTH = (1, 0, 1)
+    NW = (-1, -1, np.sqrt(2))
+    NE = (-1, 1, np.sqrt(2))
+    SW = (1, -1, np.sqrt(2))
+    SE = (1, 1, np.sqrt(2))
 
     @property
     def cost(self):
@@ -69,21 +73,25 @@ def valid_actions(grid, current_node):
     """
     Returns a list of valid actions given a grid and current node.
     """
-    valid_actions = list(Action)
     n, m = grid.shape[0] - 1, grid.shape[1] - 1
     x, y = current_node
 
     # check if the node is off the grid or
     # it's an obstacle
+    valid_actions = []
+    for action in list(Action):
+        delta = action.delta
+        (x1, y1) = (x + delta[0], y + delta[1])
+        if x1 > n:
+            continue
 
-    if x - 1 < 0 or grid[x - 1, y] == 1:
-        valid_actions.remove(Action.NORTH)
-    if x + 1 > n or grid[x + 1, y] == 1:
-        valid_actions.remove(Action.SOUTH)
-    if y - 1 < 0 or grid[x, y - 1] == 1:
-        valid_actions.remove(Action.WEST)
-    if y + 1 > m or grid[x, y + 1] == 1:
-        valid_actions.remove(Action.EAST)
+        if y1 > m:
+            continue
+
+        if grid[(x1, y1)] == 1:
+            continue
+
+        valid_actions.append(action)
 
     return valid_actions
 
