@@ -148,8 +148,13 @@ class MotionPlanning(Drone):
         
         # Set goal as some arbitrary position on the grid
         # TODO: adapt to set goal as latitude / longitude position and convert
-        lon, lat, alt = (-122.397275, 37.792844, 0)
-        grid_goal_0 = (-north_offset + 10, -east_offset + 10)
+        # grid_goal_0 = (-north_offset + 10, -east_offset + 10)
+
+        lon, lat, alt = (-122.396155, 37.794775, 0)
+        # lon, lat, alt = (-122.396882, 37.795342, 3.2) # on top of a building
+        # grid_goal = (920, 920)  # end of map
+
+        # lon, lat, alt = (-122.397275, 37.792844, 0)
         grid_goal = calulate_grid_goal(lon, lat, alt, grid_centre, self.global_home)
         #FIXME: Handle the case if the goal equals the current position
 
@@ -162,7 +167,7 @@ class MotionPlanning(Drone):
         # TODO (if you're feeling ambitious): Try a different approach altogether!
 
         # Convert path to waypoints
-        waypoints = [[p[0] + north_offset, p[1] + east_offset, TARGET_ALTITUDE, 0] for p in path]
+        waypoints = [[p[0] + north_offset, p[1] + east_offset, TARGET_ALTITUDE, 0] for p in prune_path(path)]
         # Set self.waypoints
         self.waypoints = waypoints
         # TODO: send waypoints to sim (this is just for visualization of waypoints)
