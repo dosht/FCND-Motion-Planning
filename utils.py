@@ -1,5 +1,6 @@
 from udacidrone.frame_utils import *
 
+
 def read_lat_lon(filename):
     with open(filename, 'r') as f:
         lat_lon = f.readline()
