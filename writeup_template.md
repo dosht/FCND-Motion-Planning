@@ -46,9 +46,6 @@ current_local_pos = global_to_local(global_position, self.global_home)
 ```
 
 
-Meanwhile, here's a picture of me flying through the trees!
-![Forest Flying](./misc/in_the_trees.png)
-
 #### 3. Set grid start position from local position
 This is another step in adding flexibility to the start location. I defined functions `local_position_to_grid`:
 ```python
@@ -147,7 +144,13 @@ waypoints = [[p[0] + north_offset, p[1] + east_offset, TARGET_ALTITUDE, 0] for p
 ### Execute the flight
 #### 1. Does it work?
 It works!
-  
+
+
+Here's a picture of my drone flying accoarding to the plan!
+![Waypoints_Flying](./misc/waypoints_flying.png)
+
+
+
 # Extra Challenges: Real World Planning
 Next steps is to improve the planning by introducing the 2.5D grid to allow flying over short objects, using ray tracing to remove useless waypoints and moveing from grid to graph.
 
