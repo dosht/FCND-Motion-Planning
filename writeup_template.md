@@ -109,6 +109,9 @@ def valid_actions(grid, current_node):
 
     return valid_actions
 ```
+This is an image showing a plan from position `(0,0)` to `(920,920)` (start of grid to end of grid) with diagonal moves:
+
+![Plan_Exp](./misc/plan_exp.png)
 
 #### 6. Cull waypoints 
 For this version, I used a simple path pruning technique that only checks foreach point if the next 2 points or almost on the same line and remove the one in the middle.
